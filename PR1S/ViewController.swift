@@ -114,10 +114,18 @@ class ViewController: UITableViewController {
         // BEGIN-CODE-UOC-1
          var vc:UIViewController
       
-        vc = ViewControllerBasic(nibName: "ViewControllerBasic", bundle: nil)
-        (vc as! ViewControllerBasic).m_item = item
-
-       
+        // Load a different ViewController depending on item type
+        switch item.m_type {
+        case 7:
+            // If type is equal to 7, we open a ViewControllerDraw to show data as a graphic
+            vc = ViewControllerDraw(nibName: "ViewControllerDraw", bundle: nil)
+            (vc as! ViewControllerDraw).m_str_json = item.m_data
+            break
+        default:
+            // Otherwise, we open basic view
+            vc = ViewControllerBasic(nibName: "ViewControllerBasic", bundle: nil)
+            (vc as! ViewControllerBasic).m_item = item
+        }
         
         let p: UINavigationController = (self.parent as? UINavigationController)!
         p.pushViewController(vc, animated: true)
