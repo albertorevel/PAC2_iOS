@@ -26,7 +26,13 @@ class UIViewDraw: UIView {
         // Drawing code
         // BEGIN-CODE-UOC-3
         
-               
+        // Get the contextRef
+        let context:CGContext = UIGraphicsGetCurrentContext()!;
+        
+        // Set the background fill color to WHITE
+        context.setFillColor(red: 255.0, green: 255.0, blue: 255.0, alpha: 1.0)
+        
+        context.fill(rect)
         
    
  
