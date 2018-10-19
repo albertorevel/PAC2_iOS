@@ -27,14 +27,14 @@ class ViewControllerDraw: UIViewController {
         do {
             let list: NSMutableDictionary = try JSONSerialization.jsonObject(with: m_data as Data, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSMutableDictionary
             
-            var m_y_axis = list.value(forKey: "y-axis") as! NSMutableDictionary
+            let m_y_axis = list.value(forKey: "y-axis") as! NSMutableDictionary
             
             // Values to populate m_view
-            var m_x_axis_labels = list.value(forKey: "x-axis-labels") as! NSMutableArray
-            var m_y_values = list.value(forKey: "y-values") as! NSMutableArray
-            var m_y_axis_min_value = m_y_axis.value(forKey: "min-value") as! Double
-            var m_y_axis_max_value = m_y_axis.value(forKey: "max-value") as! Double
-            var m_y_axis_step = m_y_axis.value(forKey: "step") as! Double
+            let m_x_axis_labels = list.value(forKey: "x-axis-labels") as! NSMutableArray
+            let m_y_values = list.value(forKey: "y-values") as! NSMutableArray
+            let m_y_axis_min_value = m_y_axis.value(forKey: "min-value") as! Double
+            let m_y_axis_max_value = m_y_axis.value(forKey: "max-value") as! Double
+            let m_y_axis_step = m_y_axis.value(forKey: "step") as! Double
 
             m_view = UIViewDraw()
             
@@ -55,7 +55,9 @@ class ViewControllerDraw: UIViewController {
         
         */
         
-        
+        if (m_view != nil) {
+            self.view = m_view
+        }
         // END-CODE-UOC-2
         
         
