@@ -28,12 +28,22 @@ class ViewControllerDraw: UIViewController {
             let list: NSMutableDictionary = try JSONSerialization.jsonObject(with: m_data as Data, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSMutableDictionary
             
             var m_y_axis = list.value(forKey: "y-axis") as! NSMutableDictionary
+            
+            // Values to populate m_view
             var m_x_axis_labels = list.value(forKey: "x-axis-labels") as! NSMutableArray
             var m_y_values = list.value(forKey: "y-values") as! NSMutableArray
-            var m_min_value = m_y_axis.value(forKey: "min-value") as! Double
-            var m_max_value = m_y_axis.value(forKey: "max-value") as! Double
-            var m_step = m_y_axis.value(forKey: "step") as! Double
+            var m_y_axis_min_value = m_y_axis.value(forKey: "min-value") as! Double
+            var m_y_axis_max_value = m_y_axis.value(forKey: "max-value") as! Double
+            var m_y_axis_step = m_y_axis.value(forKey: "step") as! Double
 
+            m_view = UIViewDraw()
+            
+            m_view?.m_x_axis_labels = m_x_axis_labels
+            m_view?.m_y_values = m_y_values
+            m_view?.m_y_axis_min_value = m_y_axis_min_value
+            m_view?.m_y_axis_max_value = m_y_axis_max_value
+            m_view?.m_y_axis_step = m_y_axis_step
+        
         } catch {
             print("Unexpected error: \(error).")
         }
