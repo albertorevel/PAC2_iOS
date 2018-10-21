@@ -14,7 +14,7 @@ class ViewControllerDraw: UIViewController {
     
     var m_str_json:String = ""
     var m_view:UIViewDraw? = nil
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +54,19 @@ class ViewControllerDraw: UIViewController {
          \"y-values\":[356,560,620]}"
         
         */
+        
+        if #available(iOS 11.0, *) {
+            let window = UIApplication.shared.keyWindow
+            let topPadding = window?.safeAreaInsets.top
+            let bottomPadding = window?.safeAreaInsets.bottom
+            m_view?.bottomHeight = bottomPadding ?? 0
+        }
+        
+        let barHeight=self.navigationController?.navigationBar.frame.height ?? 0
+        let statusBarHeight = UIApplication.shared.isStatusBarHidden ? CGFloat(0) : UIApplication.shared.statusBarFrame.height
+        let topHeight = barHeight + statusBarHeight
+        
+        m_view?.topHeight = topHeight
         
         if (m_view != nil) {
             self.view = m_view
