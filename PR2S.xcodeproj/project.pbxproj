@@ -21,7 +21,7 @@
 		B4D0B5531DB1439E00B7AA55 /* ViewControllerGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D0B5511DB1439E00B7AA55 /* ViewControllerGallery.swift */; };
 		B4D0B5541DB1439E00B7AA55 /* ViewControllerGallery.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4D0B5521DB1439E00B7AA55 /* ViewControllerGallery.xib */; };
 		B4D0B5561DB143CD00B7AA55 /* UIViewDraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D0B5551DB143CD00B7AA55 /* UIViewDraw.swift */; };
-		EEE42DEA2179A74A00D1E8C5 /* ViewControllerDraw.xib in Resources */ = {isa = PBXBuildFile; fileRef = EEE42DE92179A74A00D1E8C5 /* ViewControllerDraw.xib */; };
+		EE2815F5217CE3BE008C8B84 /* ViewControllerDraw.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE2815F4217CE3BE008C8B84 /* ViewControllerDraw.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +45,7 @@
 		B4D0B5511DB1439E00B7AA55 /* ViewControllerGallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerGallery.swift; sourceTree = "<group>"; };
 		B4D0B5521DB1439E00B7AA55 /* ViewControllerGallery.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewControllerGallery.xib; sourceTree = "<group>"; };
 		B4D0B5551DB143CD00B7AA55 /* UIViewDraw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewDraw.swift; sourceTree = "<group>"; };
-		EEE42DE92179A74A00D1E8C5 /* ViewControllerDraw.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewControllerDraw.xib; sourceTree = "<group>"; };
+		EE2815F4217CE3BE008C8B84 /* ViewControllerDraw.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewControllerDraw.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,10 +115,10 @@
 		B4AE71491D966757005F4C75 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				EEE42DE92179A74A00D1E8C5 /* ViewControllerDraw.xib */,
 				B4AE71511D96EADC005F4C75 /* ViewControllerBasic.swift */,
 				B4AE71521D96EADC005F4C75 /* ViewControllerBasic.xib */,
 				B4D0B54F1DB1436D00B7AA55 /* ViewControllerDraw.swift */,
+				EE2815F4217CE3BE008C8B84 /* ViewControllerDraw.xib */,
 				B4D0B5511DB1439E00B7AA55 /* ViewControllerGallery.swift */,
 				B4D0B5521DB1439E00B7AA55 /* ViewControllerGallery.xib */,
 			);
@@ -208,7 +208,7 @@
 				B4AE71221D966639005F4C75 /* Assets.xcassets in Resources */,
 				B4D0B5541DB1439E00B7AA55 /* ViewControllerGallery.xib in Resources */,
 				B4AE717C1D96F1B2005F4C75 /* icons in Resources */,
-				EEE42DEA2179A74A00D1E8C5 /* ViewControllerDraw.xib in Resources */,
+				EE2815F5217CE3BE008C8B84 /* ViewControllerDraw.xib in Resources */,
 				B4AE71201D966639005F4C75 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
