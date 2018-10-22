@@ -17,8 +17,8 @@ class UIViewDraw: UIView {
     var  m_x_axis_labels:NSMutableArray?=nil
     var  m_y_values:NSMutableArray?=nil
 
-    var topHeight:CGFloat = 0
-      var bottomHeight:CGFloat = 0
+    var topHeight:Double = 0
+      var bottomHeight:Double = 0
     
     
     // Only override draw() if you perform custom drawing.
@@ -33,11 +33,11 @@ class UIViewDraw: UIView {
         context.fill(rect)
         
         // We define limit coordinates and axis origins (0,0)
-        let margin:CGFloat = 50
-        let x0:CGFloat = margin
-        let x1:CGFloat = rect.size.width - margin
-        let y0:CGFloat = rect.size.height  - self.bottomHeight - margin
-        let y1:CGFloat = self.topHeight + margin
+        let margin:Double = 50
+        let x0:Double = margin
+        let x1:Double = Double(rect.size.width) - margin
+        let y0:Double = Double(rect.size.height)  - self.bottomHeight - margin
+        let y1:Double = self.topHeight + margin
         let origin = CGPoint(x:  x0, y: y0)
      
         // We draw axis lines
@@ -58,6 +58,9 @@ class UIViewDraw: UIView {
         
         
         // Calculate sizes
+        
+        let y_ratio = (m_y_axis_max_value - m_y_axis_min_value) / (y0 - y1)
+        
         let y_axis_segments:CGFloat = CGFloat((m_y_axis_max_value - m_y_axis_min_value ) / m_y_axis_step)
         let y_axis_segment:CGFloat = (y0 - y1) / y_axis_segments
         
@@ -67,7 +70,8 @@ class UIViewDraw: UIView {
         stringStyle.alignment = .right
     
         let attributes = [
-            NSAttributedString.Key.paragraphStyle: stringStyle
+            NSAttributedString.Key.paragraphStyle: stringStyle,
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0)
         ]
         
         var attributedString:NSAttributedString
@@ -86,7 +90,7 @@ class UIViewDraw: UIView {
             textY -= CGFloat(y_axis_segment)
             drawingY = textY - stringHeight / 2
             
-            textbox = CGRect(x: 0, y: drawingY, width: x0 - 20, height: stringHeight)
+            textbox = CGRect(x: 0, y: drawingY, width: x0 - 10, height: stringHeight)
             attributedString.draw(in: textbox)
                             
             line.move(to: CGPoint(x: x0 - 5, y : textY))
@@ -95,19 +99,42 @@ class UIViewDraw: UIView {
                             
         }
         
-        context.strokePath()
-        
         /* X_AXIS */
         
         // Calculate sizes
-        let x_axis_segment:CGFloat = (x1 - x0) / CGFloat(m_x_axis_labels?.count ?? 1)
+        let x_axis_segment:CGFloat = (x1 - x0) / (CGFloat(m_x_axis_labels?.count ?? 1) + 1.0)
         
         var stringWidth:CGFloat
+        var textX:CGFloat = x0
         var drawingX:CGFloat
         
-        for label in m_x_axis_labels ?? NSMutableArray() {
+        for i in 0...((m_x_axis_labels?.count ?? 1) - 1) {
             
+            let element = [m_x_axis_labels?.object(at: i) ?? ""]
+            let element2 = element[0] as! Int
+            attributedString = NSAttributedString(string : String(element2), attributes: attributes)
+            stringWidth = attributedString.size().width
+            stringHeight = attributedString.size().height
+            
+            textX += x_axis_segment
+            drawingX = textX - stringWidth / 2
+            
+            drawingY = y0 + stringHeight
+            
+            textbox = CGRect(x: drawingX, y: drawingY, width: stringWidth, height: stringHeight)
+            attributedString.draw(in: textbox)
+            
+            line.move(to: CGPoint(x: textX, y : y0))
+            line.addLine(to: CGPoint(x:  textX, y: y0 + 5))
+            context.addPath(line)
         }
+        
+        context.strokePath()
+        
+        // draw rectangles
+        
+        let barwidth = x_axis_segment * ( 2 / 3 )
+        
         // END-CODE-UOC-3
     }
 
