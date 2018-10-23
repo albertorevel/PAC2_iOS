@@ -116,6 +116,10 @@ class ViewController: UITableViewController {
       
         // Load a different ViewController depending on item type
         switch item.m_type {
+        case 4:
+            vc = ViewControllerGallery(nibName: "ViewControllerGallery", bundle: nil)
+            (vc as! ViewControllerGallery).m_str_json = item.m_data
+            break
         case 7:
             // If type is equal to 7, we open a ViewControllerDraw to show data as a graphic
             vc = ViewControllerDraw(nibName: "ViewControllerDraw", bundle: nil)

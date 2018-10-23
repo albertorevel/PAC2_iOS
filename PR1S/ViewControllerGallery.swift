@@ -31,6 +31,12 @@ class ViewControllerGallery: UIViewController {
         
         // BEGIN-CODE-UOC-4
         
+        /*
+ 
+            "[\"http:einfmlinux1.uoc.edu/devios/media/i1.jpg\",\"
+            http:einfmlinux1.uoc.edu/devios/media/i2.jpg\",\"
+            http:einfmlinux1.uoc.edu/devios/media/i3.jpg\"]"
+ */
         
        
         
