@@ -57,16 +57,16 @@ class ViewControllerDraw: UIViewController {
         
         if #available(iOS 11.0, *) {
             let window = UIApplication.shared.keyWindow
-            let topPadding = window?.safeAreaInsets.top
+//            let topPadding = window?.safeAreaInsets.top
             let bottomPadding = window?.safeAreaInsets.bottom
-            m_view?.bottomHeight = bottomPadding ?? 0
+            m_view?.bottomHeight = Double(bottomPadding ?? 0)
         }
         
         let barHeight=self.navigationController?.navigationBar.frame.height ?? 0
         let statusBarHeight = UIApplication.shared.isStatusBarHidden ? CGFloat(0) : UIApplication.shared.statusBarFrame.height
         let topHeight = barHeight + statusBarHeight
         
-        m_view?.topHeight = topHeight
+        m_view?.topHeight = Double(topHeight)
         
         if (m_view != nil) {
             self.view = m_view
