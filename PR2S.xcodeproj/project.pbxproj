@@ -22,6 +22,7 @@
 		B4D0B5541DB1439E00B7AA55 /* ViewControllerGallery.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4D0B5521DB1439E00B7AA55 /* ViewControllerGallery.xib */; };
 		B4D0B5561DB143CD00B7AA55 /* UIViewDraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D0B5551DB143CD00B7AA55 /* UIViewDraw.swift */; };
 		EE2815F5217CE3BE008C8B84 /* ViewControllerDraw.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE2815F4217CE3BE008C8B84 /* ViewControllerDraw.xib */; };
+		EE2815F921803C60008C8B84 /* data2.xml in Resources */ = {isa = PBXBuildFile; fileRef = EE2815F821803C5F008C8B84 /* data2.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		B4D0B5521DB1439E00B7AA55 /* ViewControllerGallery.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewControllerGallery.xib; sourceTree = "<group>"; };
 		B4D0B5551DB143CD00B7AA55 /* UIViewDraw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewDraw.swift; sourceTree = "<group>"; };
 		EE2815F4217CE3BE008C8B84 /* ViewControllerDraw.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewControllerDraw.xib; sourceTree = "<group>"; };
+		EE2815F821803C5F008C8B84 /* data2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = data2.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 			children = (
 				B4AE714B1D966CC3005F4C75 /* CItemProvider.swift */,
 				B4AE714F1D966E1B005F4C75 /* CItemData.swift */,
+				EE2815F821803C5F008C8B84 /* data2.xml */,
 			);
 			name = Parsing;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 				B4AE71541D96EADC005F4C75 /* ViewControllerBasic.xib in Resources */,
 				B4AE71221D966639005F4C75 /* Assets.xcassets in Resources */,
 				B4D0B5541DB1439E00B7AA55 /* ViewControllerGallery.xib in Resources */,
+				EE2815F921803C60008C8B84 /* data2.xml in Resources */,
 				B4AE717C1D96F1B2005F4C75 /* icons in Resources */,
 				EE2815F5217CE3BE008C8B84 /* ViewControllerDraw.xib in Resources */,
 				B4AE71201D966639005F4C75 /* Main.storyboard in Resources */,

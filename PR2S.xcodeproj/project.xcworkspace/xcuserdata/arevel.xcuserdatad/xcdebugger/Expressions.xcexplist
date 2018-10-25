@@ -3,6 +3,12 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "ViewController.tableView(_:didSelectRowAt:):ViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "CItemProvider.LoadAndParseFromWeb():CItemProvider.swift">
+      </ContextState>
+      <ContextState
          contextName = "ViewControllerDraw.viewDidLoad():ViewControllerDraw.swift">
       </ContextState>
       <ContextState
@@ -20,7 +26,12 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ViewController.tableView(_:didSelectRowAt:):ViewController.swift">
+         contextName = "closure #1 in ViewControllerGallery.OpenImage(str_url:):ViewControllerGallery.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "data != nil ">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
    </ContextStates>
 </VariablesViewState>
