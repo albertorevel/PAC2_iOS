@@ -3,6 +3,17 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "ViewControllerGallery.CreateViews():ViewControllerGallery.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "imageView.frame.size.height">
+            </PersistentString>
+            <PersistentString
+               value = "self.view.frame.size.height">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ViewController.tableView(_:didSelectRowAt:):ViewController.swift">
       </ContextState>
       <ContextState

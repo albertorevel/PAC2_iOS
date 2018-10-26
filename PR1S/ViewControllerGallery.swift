@@ -66,19 +66,12 @@ class ViewControllerGallery: UIViewController {
         // BEGIN-CODE-UOC-7
         let uIImageView:UIImageView = self.m_views?.object(at: self.m_next_index) as! UIImageView
         
-        let originPoint = self.view.frame.origin
-        let originalFrameWidth = self.view.frame.size
-        originPoint.y += (self.view.frame.size).width
-        
-        let newFrame:CGRect = CGRect(origin: originPoint, size: self.view.frame.size)
-        
-        uIImageView.frame = newFrame
+        uIImageView.frame.origin.x = self.view.frame.size.width
         
         self.view.addSubview(uIImageView)
         
-        newFrame.origin.y =
-        
         UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveLinear, animations: {
+            uIImageView.frame.origin.x = self.view.frame.origin.x
             
         }, completion: { finished in
             self.m_next_index = (self.m_next_index + 1) % self.m_total_images
@@ -98,9 +91,19 @@ class ViewControllerGallery: UIViewController {
     @objc func CreateViews()
     {
         // BEGIN-CODE-UOC-6
-        
+        self.view.contentMode = UIView.ContentMode.center
         for image in self.m_images! {
             let imageView:UIImageView = UIImageView(image: image as? UIImage)
+            
+            imageView.contentMode = UIView.ContentMode.scaleAspectFill
+            imageView.clipsToBounds = true
+            
+//            var frameSize = imageView.frame.size
+//            frameSize.height = max(imageView.frame.size.height, self.view.frame.size.height)
+//            imageView.frame.size = frameSize
+            
+            
+            self.view.backgroundColor = UIColor.black
             
             self.m_views?.add(imageView)
         }
