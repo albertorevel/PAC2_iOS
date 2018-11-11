@@ -114,6 +114,14 @@ class ViewControllerGallery: UIViewController {
                 imageView.contentMode = UIView.ContentMode.center
                 imageView.clipsToBounds = true
                 
+                if (imageView.frame.width < self.view.frame.width) {
+                    imageView.frame.origin.x = (self.view.frame.width - imageView.frame.width) / 2
+                }
+
+                if (imageView.frame.height < self.view.frame.height) {
+                    imageView.frame.origin.y = (self.view.frame.height - imageView.frame.height) / 2
+                }
+                
                 self.view.backgroundColor = UIColor.black
                 
                 self.m_views?.add(imageView)
