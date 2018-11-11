@@ -62,6 +62,8 @@ class ViewControllerGallery: UIViewController {
     {
         
         // BEGIN-CODE-UOC-7
+        
+        // We retrieve image that will be shown
         let uIImageView:UIImageView = self.m_views?.object(at: self.m_next_index) as! UIImageView
         
         // We store image horizontal start point
@@ -72,11 +74,13 @@ class ViewControllerGallery: UIViewController {
         
         self.view.bringSubviewToFront(uIImageView)
         
-        
+        // We create a transition to display new image
         UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveLinear, animations: {
             uIImageView.frame.origin.x = originalOrigin.x
             
         }, completion: { finished in
+            
+            // When transition is done, whe increment next image index and we set a timer
             self.m_next_index = (self.m_next_index + 1) % self.m_total_images
             
             self.m_timer = Timer.scheduledTimer(timeInterval: 1.0, target: self
