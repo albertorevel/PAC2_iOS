@@ -47,26 +47,24 @@ class ViewControllerDraw: UIViewController {
         } catch {
             print("Unexpected error: \(error).")
         }
-        /*
-        "{\"y-axis\":
-            {\"min-value\":0.0,\"max-value\":700.0,\"step\":100.0},
-         \"x-axislabels\":[2013,2014,2015],
-         \"y-values\":[356,560,620]}"
         
-        */
-        
-        if #available(iOS 11.0, *) {
-            let window = UIApplication.shared.keyWindow
-//            let topPadding = window?.safeAreaInsets.top
-            let bottomPadding = window?.safeAreaInsets.bottom
-            m_view?.bottomHeight = Double(bottomPadding ?? 0)
-        }
         
         let barHeight=self.navigationController?.navigationBar.frame.height ?? 0
         let statusBarHeight = UIApplication.shared.isStatusBarHidden ? CGFloat(0) : UIApplication.shared.statusBarFrame.height
-        let topHeight = barHeight + statusBarHeight
+        var topPadding = barHeight + statusBarHeight
         
-        m_view?.topHeight = Double(topHeight)
+        if #available(iOS 11.0, *) {
+            let window = UIApplication.shared.keyWindow
+            topPadding += window?.safeAreaInsets.top ?? 0.0
+            let bottomPadding = window?.safeAreaInsets.bottom
+            let leftPadding = window?.safeAreaInsets.left
+            let rightPadding = window?.safeAreaInsets.right
+            m_view?.m_bottom_padding = Double(bottomPadding ?? 0)
+            m_view?.m_left_padding = Double(leftPadding ?? 0)
+            m_view?.m_right_padding = Double(rightPadding ?? 0)
+        }
+        
+        m_view?.m_top_padding = Double(topPadding)
         
         if (m_view != nil) {
             self.view = m_view

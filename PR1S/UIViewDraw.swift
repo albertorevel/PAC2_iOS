@@ -17,8 +17,10 @@ class UIViewDraw: UIView {
     var  m_x_axis_labels:NSMutableArray?=nil
     var  m_y_values:NSMutableArray?=nil
 
-    var topHeight:Double = 0
-      var bottomHeight:Double = 0
+    var m_top_padding:Double = 0
+    var m_bottom_padding:Double = 0
+    var m_left_padding:Double = 0
+    var m_right_padding:Double = 0
     
     
     // Only override draw() if you perform custom drawing.
@@ -35,10 +37,10 @@ class UIViewDraw: UIView {
         // We define limit coordinates and axis origins (0,0)
         // We use margin/2 at top and at the left because there's no labels
         let margin:Double = 50
-        let x0:Double = margin
-        let x1:Double = Double(rect.size.width) - margin / 2
-        let y0:Double = Double(rect.size.height)  - self.bottomHeight - margin
-        let y1:Double = self.topHeight + margin / 2
+        let x0:Double = self.m_left_padding + margin
+        let x1:Double = Double(rect.size.width) - self.m_right_padding - margin / 2
+        let y0:Double = Double(rect.size.height)  - self.m_bottom_padding - margin
+        let y1:Double = self.m_top_padding + margin / 2
         let origin = CGPoint(x:  x0, y: y0)
      
         // We draw axis lines
@@ -61,7 +63,6 @@ class UIViewDraw: UIView {
         // Calculate sizes
         
         let y_ratio =  (y0 - y1) / (m_y_axis_max_value - m_y_axis_min_value)
-        //let x_ratio =  (x1 - x0) / (Double(m_x_axis_labels?.count ?? 0 ) + 1.0 )
         
         // We define text attributes
         let stringStyle = NSMutableParagraphStyle()

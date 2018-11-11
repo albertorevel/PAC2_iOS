@@ -70,7 +70,7 @@ class ViewController: UITableViewController {
         let view: UITableView = (self.view as? UITableView)!
         if (!((self.m_provider?.m_loading)!)) {
         
-            var fy:CGFloat = -1.0 * (self.refreshControl?.frame.size.height)!;
+            let fy:CGFloat = -1.0 * (self.refreshControl?.frame.size.height)!;
         
             view.setContentOffset(CGPoint(x:0,y:fy), animated: true)
         
@@ -114,9 +114,11 @@ class ViewController: UITableViewController {
         // BEGIN-CODE-UOC-1
          var vc:UIViewController
       
-        // Load a different ViewController depending on item type
+        // It loads a different ViewController depending on item type, and stores data in
+        // the Controller's [m_str_json] variable
         switch item.m_type {
         case 4:
+            // If type is equal to 4, we open a ViewControllerGallery to show data as a images
             vc = ViewControllerGallery(nibName: "ViewControllerGallery", bundle: nil)
             (vc as! ViewControllerGallery).m_str_json = item.m_data
             break
@@ -131,6 +133,7 @@ class ViewController: UITableViewController {
             (vc as! ViewControllerBasic).m_item = item
         }
         
+        // Add selected Controller to UINavigationCOntroller
         let p: UINavigationController = (self.parent as? UINavigationController)!
         p.pushViewController(vc, animated: true)
           // END-CODE-UOC-1

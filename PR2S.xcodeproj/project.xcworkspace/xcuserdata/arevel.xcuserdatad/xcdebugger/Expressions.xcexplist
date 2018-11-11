@@ -3,6 +3,25 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "ViewControllerDraw.viewDidLoad():ViewControllerDraw.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "window?.safeAreaInsets">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewControllerGallery.OpenImage(str_url:):ViewControllerGallery.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.view.frame">
+            </PersistentString>
+            <PersistentString
+               value = "self.view">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ViewControllerGallery.CreateViews():ViewControllerGallery.swift">
          <PersistentStrings>
             <PersistentString
@@ -15,12 +34,6 @@
       </ContextState>
       <ContextState
          contextName = "ViewController.tableView(_:didSelectRowAt:):ViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "CItemProvider.LoadAndParseFromWeb():CItemProvider.swift">
-      </ContextState>
-      <ContextState
-         contextName = "ViewControllerDraw.viewDidLoad():ViewControllerDraw.swift">
       </ContextState>
       <ContextState
          contextName = "UIViewDraw.draw(_:):UIViewDraw.swift">
@@ -37,10 +50,21 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "ViewControllerGallery.cropImage(imageToCrop:):ViewControllerGallery.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "imageCropped?.cgImage?.width">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CItemProvider.LoadAndParseFromWeb():CItemProvider.swift">
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in ViewControllerGallery.OpenImage(str_url:):ViewControllerGallery.swift">
          <PersistentStrings>
             <PersistentString
-               value = "data != nil ">
+               value = "self.view.frame">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

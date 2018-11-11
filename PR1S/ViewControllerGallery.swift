@@ -23,6 +23,7 @@ class ViewControllerGallery: UIViewController {
     
     var m_timer:Timer?=nil
     
+    var m_current_uIImageView:UIImageView? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,12 +51,7 @@ class ViewControllerGallery: UIViewController {
         } catch {
             print("Unexpected error: \(error).")
         }
-        /*
-         
-         "[\"http:einfmlinux1.uoc.edu/devios/media/i1.jpg\",\"
-         http:einfmlinux1.uoc.edu/devios/media/i2.jpg\",\"
-         http:einfmlinux1.uoc.edu/devios/media/i3.jpg\"]"
-         */
+
         // END-CODE-UOC-4
 
     }
@@ -66,12 +62,17 @@ class ViewControllerGallery: UIViewController {
         // BEGIN-CODE-UOC-7
         let uIImageView:UIImageView = self.m_views?.object(at: self.m_next_index) as! UIImageView
         
+        // We store image horizontal start point
+        let originalOrigin = uIImageView.frame.origin
         uIImageView.frame.origin.x = self.view.frame.size.width
         
         self.view.addSubview(uIImageView)
         
+        self.view.bringSubviewToFront(uIImageView)
+        
+        
         UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveLinear, animations: {
-            uIImageView.frame.origin.x = self.view.frame.origin.x
+            uIImageView.frame.origin.x = originalOrigin.x
             
         }, completion: { finished in
             self.m_next_index = (self.m_next_index + 1) % self.m_total_images
@@ -93,24 +94,26 @@ class ViewControllerGallery: UIViewController {
         // BEGIN-CODE-UOC-6
         self.view.contentMode = UIView.ContentMode.center
         for image in self.m_images! {
-            let imageView:UIImageView = UIImageView(image: image as? UIImage)
             
-            imageView.contentMode = UIView.ContentMode.scaleAspectFill
-            imageView.clipsToBounds = true
-            
-//            var frameSize = imageView.frame.size
-//            frameSize.height = max(imageView.frame.size.height, self.view.frame.size.height)
-//            imageView.frame.size = frameSize
-            
-            
-            self.view.backgroundColor = UIColor.black
-            
-            self.m_views?.add(imageView)
+            if let imageCropped = cropImage(imageToCrop: image as? UIImage) {
+                
+                let imageView:UIImageView = UIImageView(image: imageCropped as UIImage)
+                
+                imageView.contentMode = UIView.ContentMode.center
+                imageView.clipsToBounds = true
+                
+                self.view.backgroundColor = UIColor.black
+                
+                self.m_views?.add(imageView)
+            }
         }
         
         let uIImageView = self.m_views?.object(at: self.m_next_index) as! UIImageView
-        
+
         self.view.addSubview(uIImageView)
+        self.view.bringSubviewToFront(uIImageView)
+
+        self.m_current_uIImageView = uIImageView
 
         self.m_next_index = 1
         self.m_loader?.stopAnimating()
@@ -133,10 +136,10 @@ class ViewControllerGallery: UIViewController {
         var str1 = NSHomeDirectory()
         str1.append(str_url)
     
-        let url:URL = URL(fileURLWithPath: str1)
+//        let url:URL = URL(fileURLWithPath: str1)
 
         
-        //        let url:URL = URL(string: str_url)!
+        let url:URL = URL(string: str_url)!
 
         let request:URLRequest = URLRequest(url: url, cachePolicy: URLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval: 60)
         
@@ -146,6 +149,7 @@ class ViewControllerGallery: UIViewController {
             (data, response, error) -> Void in
             
             if(data != nil && error == nil) {
+                
                 let image:UIImage = UIImage(data: data!)!
                 
                 self.m_images?.add(image)
@@ -168,6 +172,32 @@ class ViewControllerGallery: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func cropImage (imageToCrop : UIImage?) -> UIImage? {
+        
+       var imageCropped = imageToCrop
+        
+        var imageRect = self.view.frame
+        
+        if let imageWidth = imageCropped?.cgImage?.width {
+            let difference = (CGFloat(imageWidth) - imageRect.width) / 2
+            if (difference > 0) {
+                imageRect.origin.x = difference
+            }
+        }
+        
+        if let imageHeight = imageCropped?.cgImage?.height {
+            let difference = (CGFloat(imageHeight) - imageRect.height) / 2
+            if (difference > 0) {
+                imageRect.origin.y = difference
+            }
+        }
+        
+        if let imageRef = imageCropped?.cgImage?.cropping(to: imageRect) {
+            imageCropped = UIImage(cgImage: imageRef)
+        }
+        
+        return imageCropped
+    }
 
     /*
     // MARK: - Navigation

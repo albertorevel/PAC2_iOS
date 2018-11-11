@@ -114,17 +114,19 @@ class CItemProvider : NSObject, XMLParserDelegate
        
         
         self.m_items = NSMutableArray()
-        let _:String = "http://einfmlinux1.uoc.edu/devios/data2.xml";
+        let str_url:String = "http://einfmlinux1.uoc.edu/devios/data2.xml";
         
         var xmlData:NSData
         
         do
         {
-            var str1 = NSHomeDirectory()
-            str1.append("/Documents/data2.xml")
-            let m_url:URL = URL(fileURLWithPath: str1)
+//            var str1 = NSHomeDirectory()
+//            str1.append("/Documents/data2.xml")
+//            var m_url:URL = URL(fileURLWithPath: str1)
+            // original line v, comment to go offline
+            let m_url:URL = URL(string: str_url)!
 //            let m_url:URL = URL(string: str_url)
-            
+
             xmlData = try NSData(contentsOf: m_url)
             self.m_parser = XMLParser(data: xmlData as Data)
             self.m_parser?.delegate = self
