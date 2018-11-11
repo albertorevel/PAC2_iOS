@@ -60,8 +60,7 @@ class UIViewDraw: UIView {
        /* Y AXIS */
         
         
-        // Calculate sizes
-        
+        // We calculate sizes and we initialize variables
         let y_ratio =  (y0 - y1) / (m_y_axis_max_value - m_y_axis_min_value)
         
         // We define text attributes
@@ -79,6 +78,7 @@ class UIViewDraw: UIView {
         var newY:Double = y0
         var drawingY:Double
         
+        // We draw all labels in Y axis
         for i in stride(from: (m_y_axis_min_value + m_y_axis_step), through: m_y_axis_max_value,
                         by: m_y_axis_step) {
             
@@ -100,7 +100,7 @@ class UIViewDraw: UIView {
         
         /* X_AXIS */
         
-        // Calculate sizes
+        // We calculate sizes and we initialize variables
         let x_axis_segment:Double = (x1 - x0) / (Double(m_x_axis_labels?.count ?? 1) + 1.0 )
         var stringWidth:Double
         var newX:Double = x0
@@ -108,6 +108,7 @@ class UIViewDraw: UIView {
         var xCoordinates:Array<Double> = []
         var element:Int
         
+        // We draw all labels in X axis
         for i in 0...((m_x_axis_labels?.count ?? 1) - 1) {
             
             element = (m_x_axis_labels?.object(at: i) ?? 0 ) as! Int
@@ -132,14 +133,15 @@ class UIViewDraw: UIView {
         
         context.strokePath()
         
-        // draw rectangles
         
+        // We calculate sizes and we initialize variables
         let barwidth = x_axis_segment * ( 3 / 4 )
         var valueBar:CGRect
         var xIni:CGFloat = 0.0
         var barHeight:Double = 0.0
         context.setFillColor(red: 0.0, green: 0.0, blue: 255.0, alpha: 1.0)
         
+        // We get all the values that have to be drawn and we draw them in the graphic.
         for i in 0...((m_y_values?.count ?? 1) - 1) {
             
             xIni = CGFloat(xCoordinates[i] - barwidth / 2)
