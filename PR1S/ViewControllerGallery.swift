@@ -94,9 +94,11 @@ class ViewControllerGallery: UIViewController {
     @objc func CreateViews()
     {
         // BEGIN-CODE-UOC-6
+        // We create UIImageViews that whill contain loaded images
         self.view.contentMode = UIView.ContentMode.center
         for image in self.m_images! {
             
+            // We crop the image
             if let imageCropped = cropImage(imageToCrop: image as? UIImage) {
                 
                 let imageView:UIImageView = UIImageView(image: imageCropped as UIImage)
@@ -110,6 +112,7 @@ class ViewControllerGallery: UIViewController {
             }
         }
         
+        // We show first image and we stop loader animation
         let uIImageView = self.m_views?.object(at: self.m_next_index) as! UIImageView
 
         self.view.addSubview(uIImageView)
@@ -121,7 +124,7 @@ class ViewControllerGallery: UIViewController {
         self.m_loader?.stopAnimating()
         
         
-        
+        // We initialize a timer in order to change the image which is displaying
         self.m_timer = Timer.scheduledTimer(timeInterval: 1.0, target: self
             , selector: #selector(AnimateRec), userInfo: nil, repeats: false)
          // END-CODE-UOC-6
