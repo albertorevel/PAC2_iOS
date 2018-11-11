@@ -80,16 +80,20 @@ class ViewControllerGallery: UIViewController {
             
         }, completion: { finished in
             
-            // When transition is done, whe increment next image index and we set a timer
-            self.m_next_index = (self.m_next_index + 1) % self.m_total_images
-            
-            self.m_timer = Timer.scheduledTimer(timeInterval: 1.0, target: self
-                , selector: #selector(self.AnimateRec), userInfo: nil, repeats: false)
+            // When transition is done, if Controller's view is still displaying,
+            // we increment next image index and we set a timer
+            if ( self.view.window != nil) {
+                
+                self.m_next_index = (self.m_next_index + 1) % self.m_total_images
+                
+                self.m_timer = Timer.scheduledTimer(timeInterval: 1.0, target: self
+                    , selector: #selector(self.AnimateRec), userInfo: nil, repeats: false)
+            }
         })
         
         
         
-       
+        
         // END-CODE-UOC-7
         
     }
