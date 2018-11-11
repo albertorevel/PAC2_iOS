@@ -120,13 +120,8 @@ class CItemProvider : NSObject, XMLParserDelegate
         
         do
         {
-//            var str1 = NSHomeDirectory()
-//            str1.append("/Documents/data2.xml")
-//            var m_url:URL = URL(fileURLWithPath: str1)
-            // original line v, comment to go offline
             let m_url:URL = URL(string: str_url)!
-//            let m_url:URL = URL(string: str_url)
-
+            
             xmlData = try NSData(contentsOf: m_url)
             self.m_parser = XMLParser(data: xmlData as Data)
             self.m_parser?.delegate = self
@@ -165,7 +160,7 @@ class CItemProvider : NSObject, XMLParserDelegate
         
         if(elementName == "item")
         {
-          self.m_items?.add(self.m_last_item)
+            self.m_items?.add(self.m_last_item as Any)
         }
         else if(elementName == "title")
         {

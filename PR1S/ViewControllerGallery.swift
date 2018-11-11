@@ -30,12 +30,13 @@ class ViewControllerGallery: UIViewController {
 
         // BEGIN-CODE-UOC-4
         
-        // Convertimos el JSON recuperado en una variable de tipo Data
+        // We convert JSON into a Data type variable
         let m_data:Data = m_str_json.data(using: String.Encoding.utf8)!
         
         do {
             let list: NSMutableArray = try JSONSerialization.jsonObject(with: m_data as Data, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSMutableArray
             
+            // Variables initialization
             self.m_total_images = list.count
             self.m_images = NSMutableArray(capacity: self.m_total_images)
             self.m_views = NSMutableArray(capacity: self.m_total_images)
@@ -46,6 +47,7 @@ class ViewControllerGallery: UIViewController {
                 OpenImage(str_url: urlString)
             }
             
+            // Loader animation starts
             self.m_loader?.startAnimating()
             
         } catch {
@@ -133,18 +135,14 @@ class ViewControllerGallery: UIViewController {
     {
          // BEGIN-CODE-UOC-5
         
-        var str1 = NSHomeDirectory()
-        str1.append(str_url)
-    
-//        let url:URL = URL(fileURLWithPath: str1)
-
-        
+        // Image load from given url
         let url:URL = URL(string: str_url)!
 
         let request:URLRequest = URLRequest(url: url, cachePolicy: URLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval: 60)
         
         let session:URLSession = URLSession.shared
         
+        // When there's a response, it creates a new UIImage with received data and increments loaded images counter
         let task:URLSessionDataTask = session.dataTask(with: request){
             (data, response, error) -> Void in
             
@@ -156,6 +154,7 @@ class ViewControllerGallery: UIViewController {
                 
                 self.m_num_images += 1
                 
+                // When all images are loaded, we call the method who will create views
                 if (self.m_total_images == self.m_num_images) {
                     self.performSelector(onMainThread: #selector(ViewControllerGallery.CreateViews), with: nil, waitUntilDone: false)
                 }
@@ -172,12 +171,15 @@ class ViewControllerGallery: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    // Function that crops an image depending on controller's view size (frame)
     func cropImage (imageToCrop : UIImage?) -> UIImage? {
         
        var imageCropped = imageToCrop
         
         var imageRect = self.view.frame
         
+        // Horizontal crop if image's width is bigger tan frame's
         if let imageWidth = imageCropped?.cgImage?.width {
             let difference = (CGFloat(imageWidth) - imageRect.width) / 2
             if (difference > 0) {
@@ -185,6 +187,7 @@ class ViewControllerGallery: UIViewController {
             }
         }
         
+        // Vertical crop if image's height is bigger than frame's
         if let imageHeight = imageCropped?.cgImage?.height {
             let difference = (CGFloat(imageHeight) - imageRect.height) / 2
             if (difference > 0) {
@@ -192,6 +195,7 @@ class ViewControllerGallery: UIViewController {
             }
         }
         
+        // Image crop
         if let imageRef = imageCropped?.cgImage?.cropping(to: imageRect) {
             imageCropped = UIImage(cgImage: imageRef)
         }
