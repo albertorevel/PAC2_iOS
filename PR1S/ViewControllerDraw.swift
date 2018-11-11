@@ -20,16 +20,17 @@ class ViewControllerDraw: UIViewController {
         super.viewDidLoad()
         
         // BEGIN-CODE-UOC-2
-        // Convertimos el JSON recuperado en una variable de tipo Data
+        // We convert JSON into a Data type variable
         let m_data:Data = m_str_json.data(using: String.Encoding.utf8)!
         
         
         do {
+            // We read information stored in data
             let list: NSMutableDictionary = try JSONSerialization.jsonObject(with: m_data as Data, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSMutableDictionary
             
             let m_y_axis = list.value(forKey: "y-axis") as! NSMutableDictionary
             
-            // Values to populate m_view
+            // We get the values to populate m_view
             let m_x_axis_labels = list.value(forKey: "x-axis-labels") as! NSMutableArray
             let m_y_values = list.value(forKey: "y-values") as! NSMutableArray
             let m_y_axis_min_value = m_y_axis.value(forKey: "min-value") as! Double
@@ -38,6 +39,7 @@ class ViewControllerDraw: UIViewController {
 
             m_view = UIViewDraw()
             
+            // We populate m_view fields
             m_view?.m_x_axis_labels = m_x_axis_labels
             m_view?.m_y_values = m_y_values
             m_view?.m_y_axis_min_value = m_y_axis_min_value
@@ -48,11 +50,13 @@ class ViewControllerDraw: UIViewController {
             print("Unexpected error: \(error).")
         }
         
-        
+        // We get statusBar size and safeArea size (if available), in order to draw labels and
+        // axis properly, and we set these sizes in view properties.
         let barHeight=self.navigationController?.navigationBar.frame.height ?? 0
         let statusBarHeight = UIApplication.shared.isStatusBarHidden ? CGFloat(0) : UIApplication.shared.statusBarFrame.height
         var topPadding = barHeight + statusBarHeight
         
+        // If it's iOS 11 or higher, we get safe area sizes
         if #available(iOS 11.0, *) {
             let window = UIApplication.shared.keyWindow
             topPadding += window?.safeAreaInsets.top ?? 0.0
@@ -66,6 +70,7 @@ class ViewControllerDraw: UIViewController {
         
         m_view?.m_top_padding = Double(topPadding)
         
+        // We add this View UIViewDraw to the controller's view.
         if (m_view != nil) {
             self.view = m_view
         }
